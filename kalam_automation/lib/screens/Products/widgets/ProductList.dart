@@ -52,7 +52,7 @@ class _ProductListState extends State<ProductList> {
                   topLeft: Radius.circular(15.0),
                   topRight: Radius.circular(15.0),
                 ),
-                child: Image.asset(Images.PATH(product.image),
+                child: Image.asset(Images.path(product.image),
                     height: 300.0, width: double.infinity, fit: BoxFit.cover),
               ),
               Container(

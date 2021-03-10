@@ -52,7 +52,7 @@ class _CartItemsState extends State<CartItems> {
                         leading: CircleAvatar(
                           radius: 24.0,
                           backgroundImage:
-                              AssetImage(Images.PATH(product.image)),
+                              AssetImage(Images.path(product.image)),
                         ),
                         title: Text(
                           product.name,
