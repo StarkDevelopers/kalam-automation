@@ -20,15 +20,17 @@ class KalamDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text(
-              'Products',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-            ),
-            selected: currentScreen == ProductsScreen.routeName,
-            selectedTileColor: Colors.grey[300],
-            onTap: () => Navigator.of(context)
-                .pushReplacementNamed(ProductsScreen.routeName),
-          ),
+              title: Text(
+                'Products',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+              ),
+              selected: currentScreen == ProductsScreen.routeName,
+              selectedTileColor: Colors.grey[300],
+              onTap: () {
+                if (currentScreen != ProductsScreen.routeName) {
+                  Navigator.of(context).pushNamed(ProductsScreen.routeName);
+                }
+              }),
           ListTile(
             title: Text(
               'Cart',
@@ -36,8 +38,7 @@ class KalamDrawer extends StatelessWidget {
             ),
             selected: currentScreen == CartScreen.routeName,
             selectedTileColor: Colors.grey[300],
-            onTap: () => Navigator.of(context)
-                .pushReplacementNamed(CartScreen.routeName),
+            onTap: () => Navigator.of(context).pushNamed(CartScreen.routeName),
           ),
           ListTile(
             title: Text(

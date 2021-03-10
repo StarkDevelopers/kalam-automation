@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../screens/Cart/widgets/CartItems.dart';
-import '../../widgets/Drawer.dart';
 import '../../widgets/AppBar.dart';
 
 class CartScreen extends StatelessWidget {
@@ -12,7 +11,6 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: KalamAppBar(),
       body: CartItems(),
-      drawer: KalamDrawer(),
     );
   }
 }

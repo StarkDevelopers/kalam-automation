@@ -75,9 +75,11 @@ class _ProductListState extends State<ProductList> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(40.0)),
                             child: SizedBox(
-                              height: 40.0,
-                              width: 40.0,
+                              height: 30.0,
+                              width: 30.0,
                               child: IconButton(
+                                iconSize: 20.0,
+                                padding: const EdgeInsets.all(5.0),
                                 color: Colors.white,
                                 icon: Icon(Icons.remove),
                                 onPressed: () => cart.removeItem(product.id),
@@ -99,9 +101,11 @@ class _ProductListState extends State<ProductList> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(40.0)),
                             child: SizedBox(
-                              height: 40.0,
-                              width: 40.0,
+                              height: 30.0,
+                              width: 30.0,
                               child: IconButton(
+                                iconSize: 20.0,
+                                padding: const EdgeInsets.all(5.0),
                                 color: Colors.white,
                                 icon: Icon(Icons.add),
                                 onPressed: () => cart.addItem(product.id),

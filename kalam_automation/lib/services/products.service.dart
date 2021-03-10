@@ -9,6 +9,10 @@ class ProductService {
     try {
       final response = await http.get(API.GET_PRODUCT);
 
+      if (response.statusCode >= 400) {
+        throw Exception('Failed to fetch products');
+      }
+
       final responseData = jsonDecode(response.body) as Map<String, dynamic>;
 
       return responseData['data']
@@ -16,7 +20,7 @@ class ProductService {
           .toList();
     } catch (error) {
       print(error.toString());
-      throw Exception('Failed to fetch products');
+      throw Exception('Something went wrong');
     }
   }
 }

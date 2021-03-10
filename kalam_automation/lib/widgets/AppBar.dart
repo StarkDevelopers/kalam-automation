@@ -5,11 +5,17 @@ import '../screens/Cart/Cart.dart';
 class KalamAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-    var isCartScreen = ModalRoute.of(context).settings.name == '/cart';
+    var isProductsScreen = ModalRoute.of(context).settings.name == '/products';
     var appBarActions = <Widget>[];
 
-    if (!isCartScreen) {
-      appBarActions.add(IconButton(icon: Icon(Icons.shopping_cart), onPressed: () => Navigator.of(context).pushNamed(CartScreen.routeName)));
+    if (isProductsScreen) {
+      appBarActions.add(
+        IconButton(
+          icon: Icon(Icons.shopping_cart),
+          onPressed: () =>
+              Navigator.of(context).pushNamed(CartScreen.routeName),
+        ),
+      );
     }
 
     return AppBar(

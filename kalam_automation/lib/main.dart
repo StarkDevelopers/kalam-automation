@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import './screens/SplashScreen/SplashScreen.dart';
 import './screens/Products/Products.dart';
 import './screens/Cart/Cart.dart';
+import './screens/ServerError/ServerError.dart';
+import './screens/Login/Login.dart';
 
 import './providers/products.provider.dart';
 import './providers/cart.provider.dart';
@@ -26,10 +28,12 @@ class KalamAutomation extends StatelessWidget {
           primaryColor: Colors.black,
           accentColor: Colors.teal,
         ),
-        home: SplashScreen(),
+        home: Login(),
         routes: {
           ProductsScreen.routeName: (_) => ProductsScreen(),
           CartScreen.routeName: (_) => CartScreen(),
+          ServerError.routeName: (_) => ServerError(),
+          Login.routeName: (_) => Login(),
         },
       ),
     );
