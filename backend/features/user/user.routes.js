@@ -33,6 +33,33 @@ const createUserApi = {
   },
 }
 
+const loginUserApi = {
+  path: '/login',
+  verb: 'POST',
+  handler: {
+    controller: UserController,
+    method: 'login',
+    methodArguments: ['request:body'],
+  },
+  Model: User,
+  middlewares: {
+    // authorization: 'admin:user:create',
+    // decryption: 'Username,Name,Password,Email',
+    // subscription: 'Free'
+  },
+  request: {
+    body: {
+      number: Joi.number().required(),
+      password: Joi.string()
+        .regex(/^.*[a-z]+.*$/)
+        .regex(/^.*[A-Z]+.*$/)
+        .regex(/^.*[0-9]+.*$/)
+        .regex(/^.*\W+.*$/)
+        .required(),
+    },
+  },
+}
+
 // const updateUserApi = {
 //   path: '/:id',
 //   verb: 'PUT',
@@ -103,6 +130,6 @@ const createUserApi = {
 //   },
 // }
 
-const userEndpoints = [createUserApi]
+const userEndpoints = [createUserApi, loginUserApi]
 
 module.exports = new API('User', '/api/user', userEndpoints)

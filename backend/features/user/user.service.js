@@ -15,6 +15,10 @@ class UserService extends BaseService {
     return this.userRepository.create(user)
   }
 
+  async login(number, password) {
+    return this.userRepository.login(number, password)
+  }
+
   async update(user, id) {}
 
   async list(query) {}

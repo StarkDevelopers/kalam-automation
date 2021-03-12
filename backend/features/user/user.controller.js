@@ -1,6 +1,7 @@
 const BaseController = require('../../base/BaseController')
 const UserService = require('./user.service')
 const Constants = require('../../base/Constants')
+const AuthToken = require('../../utils/common/authToken')
 
 class UserController extends BaseController {
   constructor(context, logger, feature) {
@@ -20,6 +21,27 @@ class UserController extends BaseController {
     } catch (error) {
       this.respondError({
         message: Constants.createMessage(this.feature, true),
+      })
+    }
+  }
+
+  async login(body) {
+    try {
+      const user = await this.userService.login(body.number, body.password)
+
+      if (!user) {
+        throw 'User not found'
+      }
+
+      const token = await AuthToken.generateToken(user._id)
+
+      this.respondOk({
+        token,
+        data: user,
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
       })
     }
   }
