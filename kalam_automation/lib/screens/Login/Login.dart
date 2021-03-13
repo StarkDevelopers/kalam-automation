@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/RoundedButton.dart';
-import '../../widgets/TextFieldContainer.dart';
 import '../../images/Images.dart';
+import './widgets/LoginForm.dart';
 
 class Login extends StatelessWidget {
   static final String routeName = '/login';
+
+  final numberController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +38,7 @@ class Login extends StatelessWidget {
                 SizedBox(height: 15.0),
                 Image.asset(Images.LOGIN),
                 SizedBox(height: 30.0),
-                TextFieldContainer(
-                  icon: Icons.phone_android,
-                  hintText: 'Your mobile number',
-                ),
-                SizedBox(height: 20.0),
-                TextFieldContainer(
-                  icon: Icons.vpn_key,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
-                SizedBox(height: 20.0),
-                RoundedButton(text: 'LOGIN'),
+                LoginForm(),
               ],
             ),
           ),

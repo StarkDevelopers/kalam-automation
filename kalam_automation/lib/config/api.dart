@@ -1,3 +1,4 @@
 class API {
-  static const GET_PRODUCT = 'http://1e0b4f96cdaf.ngrok.io/api/product';
+  static const GET_PRODUCT = 'http://26fcbf746ce7.ngrok.io/api/product';
+  static const LOGIN = 'http://26fcbf746ce7.ngrok.io/api/user/login';
 }

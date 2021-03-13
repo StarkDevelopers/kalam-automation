@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class TextFieldContainer extends StatelessWidget {
   final String hintText;
   final IconData icon;
+  final TextEditingController controller;
   final bool obscureText;
 
   const TextFieldContainer({
     Key key,
     @required this.hintText,
     @required this.icon,
+    @required this.controller,
     this.obscureText = false,
   }) : super(key: key);
 
@@ -29,6 +31,7 @@ class TextFieldContainer extends StatelessWidget {
           border: InputBorder.none,
           hintText: this.hintText,
         ),
+        controller: controller,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(

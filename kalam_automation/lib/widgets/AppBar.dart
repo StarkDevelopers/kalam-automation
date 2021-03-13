@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../screens/Cart/Cart.dart';
+import '../screens/Products/Products.dart';
 
 class KalamAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-    var isProductsScreen = ModalRoute.of(context).settings.name == '/products';
+    var isProductsScreen =
+        ModalRoute.of(context).settings.name == ProductsScreen.routeName;
     var appBarActions = <Widget>[];
 
     if (isProductsScreen) {

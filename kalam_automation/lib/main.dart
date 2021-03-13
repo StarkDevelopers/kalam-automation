@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import './screens/SplashScreen/SplashScreen.dart';
 import './screens/Products/Products.dart';
 import './screens/Cart/Cart.dart';
-import './screens/ServerError/ServerError.dart';
 import './screens/Login/Login.dart';
 
+import './providers/auth.provider.dart';
 import './providers/products.provider.dart';
 import './providers/cart.provider.dart';
 
@@ -19,22 +19,24 @@ class KalamAutomation extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => Auth()),
         ChangeNotifierProvider(create: (_) => Products()),
         ChangeNotifierProvider(create: (_) => Cart()),
       ],
-      child: MaterialApp(
-        title: 'Kalam Automation',
-        theme: ThemeData(
-          primaryColor: Colors.black,
-          accentColor: Colors.teal,
+      child: Consumer<Auth>(
+        builder: (ctx, auth, _) => MaterialApp(
+          title: 'Kalam Automation',
+          theme: ThemeData(
+            primaryColor: Colors.black,
+            accentColor: Colors.teal,
+          ),
+          home: auth.isLoggedIn ? ProductsScreen() : Login(),
+          routes: {
+            ProductsScreen.routeName: (_) => ProductsScreen(),
+            CartScreen.routeName: (_) => CartScreen(),
+            Login.routeName: (_) => Login(),
+          },
         ),
-        home: Login(),
-        routes: {
-          ProductsScreen.routeName: (_) => ProductsScreen(),
-          CartScreen.routeName: (_) => CartScreen(),
-          ServerError.routeName: (_) => ServerError(),
-          Login.routeName: (_) => Login(),
-        },
       ),
     );
   }
