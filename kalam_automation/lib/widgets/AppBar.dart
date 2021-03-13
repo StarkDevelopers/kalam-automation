@@ -6,8 +6,10 @@ import '../screens/Products/Products.dart';
 class KalamAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
+    const productRoutes = ['/', ProductsScreen.routeName];
+
     var isProductsScreen =
-        ModalRoute.of(context).settings.name == ProductsScreen.routeName;
+        productRoutes.indexOf(ModalRoute.of(context).settings.name) != -1;
     var appBarActions = <Widget>[];
 
     if (isProductsScreen) {

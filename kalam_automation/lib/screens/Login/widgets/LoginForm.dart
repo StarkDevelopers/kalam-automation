@@ -42,6 +42,7 @@ class LoginForm extends StatelessWidget {
           icon: Icons.phone_android,
           hintText: 'Your mobile number',
           controller: numberController,
+          isNumber: true,
         ),
         SizedBox(height: 20.0),
         TextFieldContainer(

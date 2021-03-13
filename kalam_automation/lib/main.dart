@@ -25,6 +25,7 @@ class KalamAutomation extends StatelessWidget {
       ],
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Kalam Automation',
           theme: ThemeData(
             primaryColor: Colors.black,
@@ -35,6 +36,7 @@ class KalamAutomation extends StatelessWidget {
             ProductsScreen.routeName: (_) => ProductsScreen(),
             CartScreen.routeName: (_) => CartScreen(),
             Login.routeName: (_) => Login(),
+            SplashScreen.routeName: (_) => SplashScreen(),
           },
         ),
       ),

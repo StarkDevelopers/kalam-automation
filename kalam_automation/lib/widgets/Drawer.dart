@@ -24,7 +24,8 @@ class KalamDrawer extends StatelessWidget {
                 'Products',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
-              selected: currentScreen == ProductsScreen.routeName,
+              selected:
+                  ['/', ProductsScreen.routeName].indexOf(currentScreen) != -1,
               selectedTileColor: Colors.grey[300],
               onTap: () {
                 if (currentScreen != ProductsScreen.routeName) {

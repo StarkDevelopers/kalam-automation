@@ -4,6 +4,8 @@ import '../../screens/Login/Login.dart';
 import '../../images/Images.dart';
 
 class SplashScreen extends StatelessWidget {
+  static final String routeName = '/splash-screen';
+
   @override
   Widget build(BuildContext context) {
     Navigator.of(context).pushReplacementNamed(Login.routeName);

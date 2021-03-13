@@ -5,6 +5,7 @@ class TextFieldContainer extends StatelessWidget {
   final IconData icon;
   final TextEditingController controller;
   final bool obscureText;
+  final bool isNumber;
 
   const TextFieldContainer({
     Key key,
@@ -12,6 +13,7 @@ class TextFieldContainer extends StatelessWidget {
     @required this.icon,
     @required this.controller,
     this.obscureText = false,
+    this.isNumber = false,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class TextFieldContainer extends StatelessWidget {
           hintText: this.hintText,
         ),
         controller: controller,
+        keyboardType: isNumber ? TextInputType.number : TextInputType.text,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
