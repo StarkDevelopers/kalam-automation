@@ -7,6 +7,10 @@ class OrderItemsService extends BaseService {
 
     this.orderItemsRepository = new OrderItemsRepository(context, logger)
   }
+
+  async list() {
+    return await this.orderItemsRepository.list()
+  }
 }
 
 module.exports = OrderItemsService

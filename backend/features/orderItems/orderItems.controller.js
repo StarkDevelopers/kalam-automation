@@ -8,6 +8,20 @@ class OrderItemsController extends BaseController {
 
     this.service = new OrderItemsService(context, logger)
   }
+
+  async list() {
+    try {
+      const orders = await this.service.list()
+
+      this.respondOk({
+        data: orders,
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
 }
 
 module.exports = OrderItemsController
