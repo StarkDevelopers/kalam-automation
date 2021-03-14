@@ -12,10 +12,12 @@ class UserService {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode({
-          "number": number,
-          "password": password,
-        }),
+        body: jsonEncode(
+          {
+            "number": number,
+            "password": password,
+          },
+        ),
       );
 
       if (response.statusCode >= 400) {

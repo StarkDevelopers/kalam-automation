@@ -8,4 +8,11 @@ class CartItem {
     @required this.id,
     @required this.quantity,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'productId': id,
+      'quantity': quantity,
+    };
+  }
 }

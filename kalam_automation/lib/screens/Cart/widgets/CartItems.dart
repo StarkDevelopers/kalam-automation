@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import '../../../images/Images.dart';
 import '../../../providers/products.provider.dart';
 import '../../../providers/cart.provider.dart';
+import '../../../models/cart.model.dart';
+import '../../../screens/OwnedProducts/OwnedProducts.dart';
+import '../../../services/orders.service.dart';
 
 class CartItems extends StatefulWidget {
   @override
@@ -11,6 +14,24 @@ class CartItems extends StatefulWidget {
 }
 
 class _CartItemsState extends State<CartItems> {
+  Future<void> placeOrder(
+      BuildContext context, List<CartItem> cartItems) async {
+    try {
+      await OrdersService.placeOrder(cartItems);
+
+      Provider.of<Cart>(context, listen: false).clear();
+
+      Navigator.of(context).pushReplacementNamed(OwnedProducts.routeName);
+    } catch (error) {
+      print(error.toString());
+
+      final scaffoldContext = Scaffold.of(context);
+      final snackBar = SnackBar(content: Text('Failed to place an order!'));
+
+      scaffoldContext.showSnackBar(snackBar);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<Products>(context).items;
@@ -83,7 +104,7 @@ class _CartItemsState extends State<CartItems> {
                       color: Colors.white,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () => placeOrder(context, cartItems),
                   // style: ButtonStyle(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,

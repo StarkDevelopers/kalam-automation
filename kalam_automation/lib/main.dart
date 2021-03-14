@@ -5,6 +5,7 @@ import './screens/SplashScreen/SplashScreen.dart';
 import './screens/Products/Products.dart';
 import './screens/Cart/Cart.dart';
 import './screens/Login/Login.dart';
+import './screens/OwnedProducts/OwnedProducts.dart';
 
 import './providers/auth.provider.dart';
 import './providers/products.provider.dart';
@@ -37,6 +38,7 @@ class KalamAutomation extends StatelessWidget {
             CartScreen.routeName: (_) => CartScreen(),
             Login.routeName: (_) => Login(),
             SplashScreen.routeName: (_) => SplashScreen(),
+            OwnedProducts.routeName: (_) => OwnedProducts(),
           },
         ),
       ),
