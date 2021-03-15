@@ -10,6 +10,7 @@ import '../../screens/ServerError/ServerError.dart';
 import '../../widgets/Drawer.dart';
 import '../../providers/products.provider.dart';
 import '../../images/Images.dart';
+import '../../enums/ProductStatus.enum.dart';
 
 class OwnedProducts extends StatelessWidget {
   static final String routeName = '/owned-products';
@@ -97,7 +98,7 @@ class OwnedProducts extends StatelessWidget {
                           ),
                           trailing: OrderStatus(orderStatus: orderStatus),
                           onTap: () => {
-                            orderStatus == 'Approved'
+                            orderStatus == ProductStatus.APPROVED
                                 ? Navigator.of(context).pushNamed(
                                     OwnedProductDetails.routeName,
                                     arguments: {
@@ -129,13 +130,13 @@ class OrderInstruction extends StatelessWidget {
 
   String get instruction {
     switch (orderStatus) {
-      case 'Pending':
+      case ProductStatus.PENDING:
         return 'Admin will approve upon receiving payment';
-      case 'Approved':
+      case ProductStatus.APPROVED:
         return 'Fill details about product user';
-      case 'Inactive':
+      case ProductStatus.INACTIVE:
         return 'Admin will activate upon receiving payment';
-      case 'Active':
+      case ProductStatus.ACTIVE:
         return '';
       default:
         return 'Admin will approve upon receiving payment';
@@ -164,13 +165,13 @@ class OrderStatus extends StatelessWidget {
 
   Color get statusColor {
     switch (orderStatus) {
-      case 'Pending':
+      case ProductStatus.PENDING:
         return Colors.orange;
-      case 'Approved':
+      case ProductStatus.APPROVED:
         return Colors.blue;
-      case 'Inactive':
+      case ProductStatus.INACTIVE:
         return Colors.grey;
-      case 'Active':
+      case ProductStatus.ACTIVE:
         return Colors.green;
       default:
         return Colors.orange;
