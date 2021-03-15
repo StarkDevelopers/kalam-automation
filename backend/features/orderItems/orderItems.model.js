@@ -18,16 +18,20 @@ class OrderItems {
           required: true,
           ref: 'product',
         },
-        IMEINumber: {
-          type: Number,
+        status: {
+          type: String,
+          required: false,
+        },
+        imeiNumber: {
+          type: String,
           required: false,
         },
         simCardNumber: {
-          type: Number,
+          type: String,
           required: false,
         },
         mobileNumber: {
-          type: Number,
+          type: String,
           required: false,
         },
         nameOfDriver: {

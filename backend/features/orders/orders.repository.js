@@ -18,6 +18,7 @@ class OrdersRepository extends BaseRepository {
         const orderItem = new OrderItemsModel()
         orderItem.productId = order.productId
         orderItem.orderId = newOrder._id
+        orderItem.status = 'Pending'
 
         await orderItem.save()
       }

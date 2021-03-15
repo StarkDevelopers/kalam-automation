@@ -6,12 +6,7 @@ import '../../../providers/products.provider.dart';
 import '../../../providers/cart.provider.dart';
 import '../../../screens/ServerError/ServerError.dart';
 
-class ProductList extends StatefulWidget {
-  @override
-  _ProductListState createState() => _ProductListState();
-}
-
-class _ProductListState extends State<ProductList> {
+class ProductList extends StatelessWidget {
   String cartQuantity(Cart cart, productId) {
     var foundCartItemIndex =
         cart.items.indexWhere((element) => element.id == productId);

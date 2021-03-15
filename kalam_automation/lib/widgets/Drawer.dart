@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kalam_automation/screens/OwnedProducts/OwnedProducts.dart';
 
 import '../screens/Products/Products.dart';
 import '../screens/Cart/Cart.dart';
@@ -48,7 +49,8 @@ class KalamDrawer extends StatelessWidget {
             ),
             selected: false,
             selectedTileColor: Colors.grey[300],
-            onTap: () {},
+            onTap: () =>
+                Navigator.of(context).pushNamed(OwnedProducts.routeName),
           ),
           ListTile(
             title: Text(

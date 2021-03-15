@@ -17,6 +17,44 @@ const listOrdersApi = {
   request: {},
 }
 
-const orderItemsEndpoints = [listOrdersApi]
+const getOrdersApi = {
+  path: '/:id',
+  verb: 'GET',
+  handler: {
+    controller: OrderItemsController,
+    method: 'getById',
+    methodArguments: [':id'],
+  },
+  Model: OrderItems,
+  middlewares: {},
+  request: {},
+}
+
+const updateOrderItemDetailsApi = {
+  path: '/:id',
+  verb: 'PATCH',
+  handler: {
+    controller: OrderItemsController,
+    method: 'updateOrderItemDetails',
+    methodArguments: [':id', 'request:body'],
+  },
+  Model: OrderItems,
+  middlewares: {},
+  request: {
+    body: {
+      nameOfDriver: Joi.string().required(),
+      licenseNumber: Joi.string().required(),
+      numberPlate: Joi.string().required(),
+      city: Joi.string().required(),
+      state: Joi.string().required(),
+    },
+  },
+}
+
+const orderItemsEndpoints = [
+  listOrdersApi,
+  getOrdersApi,
+  updateOrderItemDetailsApi,
+]
 
 module.exports = new API('OrderItems', '/api/orderItems', orderItemsEndpoints)

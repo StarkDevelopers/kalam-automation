@@ -22,6 +22,35 @@ class OrderItemsController extends BaseController {
       })
     }
   }
+
+  async getById(id) {
+    try {
+      const order = await this.service.getById(id)
+
+      this.respondOk({
+        data: order,
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
+
+  async updateOrderItemDetails(id, body) {
+    try {
+      await this.service.updateOrderItemDetails(id, body)
+
+      this.respondOk({
+        message: Constants.updateMessage(this.feature),
+      })
+    } catch (error) {
+      console.log(error)
+      this.respondError({
+        message: Constants.updateMessage(this.feature, true),
+      })
+    }
+  }
 }
 
 module.exports = OrderItemsController

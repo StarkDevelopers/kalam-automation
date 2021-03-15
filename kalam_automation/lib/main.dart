@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kalam_automation/screens/OwnedProductDetails/OwnedProductDetails.dart';
 import 'package:provider/provider.dart';
 
 import './screens/SplashScreen/SplashScreen.dart';
@@ -39,6 +40,7 @@ class KalamAutomation extends StatelessWidget {
             Login.routeName: (_) => Login(),
             SplashScreen.routeName: (_) => SplashScreen(),
             OwnedProducts.routeName: (_) => OwnedProducts(),
+            OwnedProductDetails.routeName: (_) => OwnedProductDetails(),
           },
         ),
       ),

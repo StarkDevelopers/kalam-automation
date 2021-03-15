@@ -23,8 +23,6 @@ class _CartItemsState extends State<CartItems> {
 
       Navigator.of(context).pushReplacementNamed(OwnedProducts.routeName);
     } catch (error) {
-      print(error.toString());
-
       final scaffoldContext = Scaffold.of(context);
       final snackBar = SnackBar(content: Text('Failed to place an order!'));
 
@@ -34,8 +32,8 @@ class _CartItemsState extends State<CartItems> {
 
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<Products>(context).items;
-    final cartItems = Provider.of<Cart>(context).items;
+    final products = Provider.of<Products>(context, listen: false).items;
+    final cartItems = Provider.of<Cart>(context, listen: false).items;
     return cartItems.length == 0
         ? Center(
             child: Text(

@@ -4,19 +4,6 @@ const API = require('../../base/API')
 const OrdersController = require('./orders.controller')
 const Orders = require('./orders.model')
 
-const listOrdersApi = {
-  path: '',
-  verb: 'GET',
-  handler: {
-    controller: OrdersController,
-    method: 'list',
-    methodArguments: [],
-  },
-  Model: Orders,
-  middlewares: {},
-  request: {},
-}
-
 const createOrdersApi = {
   path: '',
   verb: 'POST',
@@ -37,6 +24,6 @@ const createOrdersApi = {
   },
 }
 
-const ordersEndpoints = [listOrdersApi, createOrdersApi]
+const ordersEndpoints = [createOrdersApi]
 
 module.exports = new API('Orders', '/api/orders', ordersEndpoints)
