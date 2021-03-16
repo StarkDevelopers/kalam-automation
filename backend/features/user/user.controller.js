@@ -7,6 +7,8 @@ class UserController extends BaseController {
   constructor(context, logger, feature) {
     super(context, logger, feature)
 
+    this.request = context.request
+
     this.userService = new UserService(context, logger)
   }
 
@@ -33,7 +35,7 @@ class UserController extends BaseController {
         throw 'User not found'
       }
 
-      const token = await AuthToken.generateToken(user._id)
+      const token = await AuthToken.generateToken(user._id, user.name)
 
       this.respondOk({
         token,
@@ -46,33 +48,52 @@ class UserController extends BaseController {
     }
   }
 
-  // async update(user, id) {
-  //   await this.userService.update(user, id)
+  async adminLogin(body) {
+    try {
+      const user = await this.userService.login(
+        body.number,
+        body.password,
+        true
+      )
 
-  //   this.respondOk({
-  //     message: Constants.updateMessage(this.feature),
-  //   })
-  // }
+      if (!user) {
+        throw 'User not found'
+      }
 
-  // async list(query) {
-  //   const users = await this.userService.list(query)
+      const token = await AuthToken.generateToken(user._id, user.name)
 
-  //   this.respondOk(users)
-  // }
+      this.respondOk({
+        token,
+        data: user,
+      })
+    } catch (error) {
+      this.respondError(
+        JSON.stringify({
+          message: Constants.fetchMessage(this.feature, true),
+        })
+      )
+    }
+  }
 
-  // async get(id) {
-  //   const user = await this.userService.get(id)
+  get() {
+    const user = this.request.user
 
-  //   this.respondOk(user)
-  // }
+    this.respondOk(user)
+  }
 
-  // async delete(id, username) {
-  //   await this.userService.delete(id, username)
+  async list() {
+    try {
+      const users = await this.userService.list()
 
-  //   this.respondOk({
-  //     message: Constants.deleteMessage(this.feature),
-  //   })
-  // }
+      this.respondOk({
+        data: users,
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
 }
 
 module.exports = UserController

@@ -5,8 +5,8 @@ class UserRepository extends BaseRepository {
     super(context, logger)
   }
 
-  async login(number, password) {
-    return await this.Model.findOne({ number, password })
+  async login(number, password, isAdmin) {
+    return await this.Model.findOne({ number, password, isAdmin: isAdmin })
   }
 }
 

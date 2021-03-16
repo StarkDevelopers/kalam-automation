@@ -47,5 +47,10 @@ MiddlewareFactory.register(
   require('../middlewares/schema-validator'),
   PRIORITY.high
 )
+MiddlewareFactory.register(
+  'authorization',
+  require('../middlewares/authorization'),
+  PRIORITY.high
+)
 
 module.exports = MiddlewareFactory
