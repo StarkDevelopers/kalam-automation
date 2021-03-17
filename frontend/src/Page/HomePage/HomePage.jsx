@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { AppBar, Toolbar, Button, Typography, Container } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Switch, Redirect, NavLink } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
 import { UsersPage, OrdersPage } from "../index";
+import { logoutUser } from "../../_services";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -26,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function HomePage(props) {
+function HomePage(props) {
+  const { dispatch } = props;
   const classes = useStyles();
-  console.log('Home Page...');
+
+  const logout = () => {
+    dispatch(logoutUser());
+  };
 
   return (
     <Router>
@@ -40,7 +46,7 @@ export function HomePage(props) {
             </Typography>
             <NavLink to="/users" className={classes.link} activeClassName={classes.activeLink}>Users</NavLink>
             <NavLink to="/orders" className={classes.link} activeClassName={classes.activeLink}>Orders</NavLink>
-            <Button color="inherit">Logout</Button>
+            <Button color="inherit" onClick={logout}>Logout</Button>
           </Container>
         </Toolbar>
       </AppBar>
@@ -52,3 +58,5 @@ export function HomePage(props) {
     </Router>
   );
 }
+
+export default connect(null, null)(HomePage);
