@@ -47,7 +47,7 @@ export function HomePage(props) {
       <Switch>
         <Route exact path="/users" component={UsersPage} />
         <Route exact path="/orders" component={OrdersPage} />
-        {/* <Redirect to ="/users" /> */}
+        <Redirect to ="/users" />
       </Switch>
     </Router>
   );

@@ -34,13 +34,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function UsersModal(props) {
-  const { showModal, user, onChangeUser, validateForm, create } = props;
+  const { showModal, user, onChangeUser, validateForm, create, edit } = props;
   const classes = useStyles();
   const [showPassword, togglePassword] = useState(false);
 
   return (
     <React.Fragment>
-      <DialogTitle id="form-dialog-title" className={classes.title}>Create User</DialogTitle>
+      <DialogTitle id="form-dialog-title" className={classes.title}>{user._id ? 'Edit' : 'Create'} User</DialogTitle>
       <DialogContent className={classes.content}>
         <TextField
           autoFocus
@@ -53,7 +53,6 @@ export function UsersModal(props) {
           onChange={e => onChangeUser('name', e.target.value)}
         />
         <TextField
-          autoFocus
           margin="dense"
           id="number"
           label="Number"
@@ -65,7 +64,6 @@ export function UsersModal(props) {
         <FormControl className={classes.password}>
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
-            autoFocus
             margin="dense"
             id="password"
             label="Password"
@@ -101,11 +99,11 @@ export function UsersModal(props) {
         />
       </DialogContent>
       <DialogActions className={classes.dialogActions}>
-        <Button onClick={() => showModal(false)} color="primary">
+        <Button color="primary" onClick={() => showModal(false)}>
           Cancel
         </Button>
-        <Button onClick={() => showModal(false)} color="primary" variant="contained" disabled={!validateForm()} onClick={create}>
-          Create
+        <Button color="primary" variant="contained" disabled={!validateForm()} onClick={user._id ? edit : create}>
+          {user._id ? 'Edit' : 'Create'}
         </Button>
       </DialogActions>
     </React.Fragment>

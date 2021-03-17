@@ -16,7 +16,9 @@ class BaseRepository {
     return await this.Model.create(object)
   }
 
-  async update(object, id) {}
+  async update(object) {
+    return await this.Model.findOneAndUpdate({ _id: object._id }, object)
+  }
 
   async list() {
     return await this.Model.find()
@@ -24,7 +26,9 @@ class BaseRepository {
 
   async get(id) {}
 
-  async delete(id) {}
+  async delete(id) {
+    return await this.Model.deleteOne({ _id: id })
+  }
 }
 
 module.exports = BaseRepository

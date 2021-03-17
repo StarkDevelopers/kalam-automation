@@ -18,6 +18,11 @@ class OrderItems {
           required: true,
           ref: 'product',
         },
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: 'user',
+        },
         status: {
           type: String,
           required: false,
@@ -34,23 +39,51 @@ class OrderItems {
           type: String,
           required: false,
         },
-        nameOfDriver: {
+        installerName: {
           type: String,
           required: false,
         },
-        licenseNumber: {
+        customerName: {
           type: String,
           required: false,
         },
-        numberPlate: {
+        companyName: {
           type: String,
           required: false,
         },
-        city: {
+        address: {
           type: String,
           required: false,
         },
-        state: {
+        gstNumber: {
+          type: String,
+          required: false,
+        },
+        customerMobileNumber1: {
+          type: String,
+          required: false,
+        },
+        customerMobileNumber2: {
+          type: String,
+          required: false,
+        },
+        emailId: {
+          type: String,
+          required: false,
+        },
+        vehicleNumber: {
+          type: String,
+          required: false,
+        },
+        vehicleCompany: {
+          type: String,
+          required: false,
+        },
+        gpsUserName: {
+          type: String,
+          required: false,
+        },
+        gpsPassword: {
           type: String,
           required: false,
         },

@@ -23,6 +23,51 @@ class OrderItemsController extends BaseController {
     }
   }
 
+  async listAll() {
+    try {
+      const orders = await this.service.listAll()
+
+      this.respondOk({
+        data: orders,
+      })
+    } catch (error) {
+      console.log(error)
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
+
+  async approveOrderItem(id, body) {
+    try {
+      await this.service.approveOrderItem(id, body)
+
+      this.respondOk({
+        data: Constants.updateMessage(this.feature),
+      })
+    } catch (error) {
+      console.log(error)
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
+
+  async activateOrderItem(id) {
+    try {
+      await this.service.activateOrderItem(id)
+
+      this.respondOk({
+        data: Constants.updateMessage(this.feature),
+      })
+    } catch (error) {
+      console.log(error)
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
+
   async getById(id) {
     try {
       const order = await this.service.getById(id)
@@ -37,12 +82,26 @@ class OrderItemsController extends BaseController {
     }
   }
 
+  async delete(id) {
+    try {
+      await this.service.delete(id)
+
+      this.respondOk({
+        data: Constants.deleteMessage(this.feature),
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.deleteMessage(this.feature, true),
+      })
+    }
+  }
+
   async updateOrderItemDetails(id, body) {
     try {
       await this.service.updateOrderItemDetails(id, body)
 
       this.respondOk({
-        message: Constants.updateMessage(this.feature),
+        data: Constants.updateMessage(this.feature),
       })
     } catch (error) {
       console.log(error)

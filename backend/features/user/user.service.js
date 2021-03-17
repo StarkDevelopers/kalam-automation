@@ -19,7 +19,9 @@ class UserService extends BaseService {
     return this.userRepository.login(number, password, isAdmin)
   }
 
-  async update(user, id) {}
+  async update(user) {
+    return this.userRepository.update(user)
+  }
 
   async list() {
     return await this.userRepository.list()
@@ -27,7 +29,9 @@ class UserService extends BaseService {
 
   async get(id) {}
 
-  async delete(id, username) {}
+  async delete(id) {
+    return await this.userRepository.delete(id)
+  }
 }
 
 module.exports = UserService

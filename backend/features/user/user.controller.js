@@ -14,15 +14,28 @@ class UserController extends BaseController {
 
   async create(user) {
     try {
-      const newUser = await this.userService.create(user)
+      await this.userService.create(user)
 
       this.respondOk({
-        message: Constants.createMessage(this.feature),
-        data: newUser,
+        data: Constants.createMessage(this.feature),
       })
     } catch (error) {
       this.respondError({
         message: Constants.createMessage(this.feature, true),
+      })
+    }
+  }
+
+  async update(user) {
+    try {
+      await this.userService.update(user)
+
+      this.respondOk({
+        data: Constants.updateMessage(this.feature),
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.updateMessage(this.feature, true),
       })
     }
   }
@@ -91,6 +104,20 @@ class UserController extends BaseController {
     } catch (error) {
       this.respondError({
         message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
+
+  async delete(id) {
+    try {
+      await this.userService.delete(id)
+
+      this.respondOk({
+        data: Constants.deleteMessage(this.feature),
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.deleteMessage(this.feature, true),
       })
     }
   }

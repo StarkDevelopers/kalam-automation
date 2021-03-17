@@ -9,11 +9,48 @@ export function createUser(body) {
     return request({ path: "/api/user", method: "POST", body }, authToken)
       .then((response) => {
         dispatch(loaderActions.loading(false));
-        dispatch(alertActions.success("Created user successfully"));
+        dispatch(alertActions.success("User created successfully"));
+        return response.data;
       })
       .catch((error) => {
         dispatch(loaderActions.loading(false));
         dispatch(alertActions.error("Failed to create user"));
+      });
+  };
+}
+
+export function editUser(body) {
+  return (dispatch) => {
+    dispatch(loaderActions.loading(true));
+    const authToken = getAuthToken();
+
+    return request({ path: "/api/user", method: "PUT", body }, authToken)
+      .then((response) => {
+        dispatch(loaderActions.loading(false));
+        dispatch(alertActions.success("User updated successfully"));
+        return response.data;
+      })
+      .catch((error) => {
+        dispatch(loaderActions.loading(false));
+        dispatch(alertActions.error("Failed to update user"));
+      });
+  };
+}
+
+export function deleteUser(id) {
+  return (dispatch) => {
+    dispatch(loaderActions.loading(true));
+    const authToken = getAuthToken();
+
+    return request({ path: `/api/user/${id}`, method: "DELETE" }, authToken)
+      .then((response) => {
+        dispatch(loaderActions.loading(false));
+        dispatch(alertActions.success("User deleted successfully"));
+        return response.data;
+      })
+      .catch((error) => {
+        dispatch(loaderActions.loading(false));
+        dispatch(alertActions.error("Failed to delete user"));
       });
   };
 }

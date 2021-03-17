@@ -28,7 +28,7 @@ class OrdersController extends BaseController {
       await this.service.create(orders)
 
       this.respondOk({
-        message: Constants.createMessage(this.feature),
+        data: Constants.createMessage(this.feature),
       })
     } catch (error) {
       console.log(error)

@@ -28,7 +28,6 @@ class ProductController extends BaseController {
       const newProduct = await this.productService.create(product)
 
       this.respondOk({
-        message: Constants.createMessage(this.feature),
         data: newProduct,
       })
     } catch (error) {

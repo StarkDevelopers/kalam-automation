@@ -33,6 +33,36 @@ const createUserApi = {
   },
 }
 
+const updateUserApi = {
+  path: '',
+  verb: 'PUT',
+  handler: {
+    controller: UserController,
+    method: 'update',
+    methodArguments: ['request:body'],
+  },
+  Model: User,
+  middlewares: {
+    authorization: '',
+    // decryption: 'Username,Name,Password,Email',
+    // subscription: 'Free'
+  },
+  request: {
+    body: {
+      _id: Joi.string().required(),
+      number: Joi.number().required(),
+      name: Joi.string().required(),
+      password: Joi.string()
+        .regex(/^.*[a-z]+.*$/)
+        .regex(/^.*[A-Z]+.*$/)
+        .regex(/^.*[0-9]+.*$/)
+        .regex(/^.*\W+.*$/)
+        .required(),
+      isAdmin: Joi.boolean().required(),
+    },
+  },
+}
+
 const loginUserApi = {
   path: '/login',
   verb: 'POST',
@@ -119,12 +149,35 @@ const listUsersApi = {
   request: {},
 }
 
+const deleteUserApi = {
+  path: '/:id',
+  verb: 'DELETE',
+  handler: {
+    controller: UserController,
+    method: 'delete',
+    methodArguments: [':id'],
+  },
+  Model: User,
+  middlewares: {
+    authorization: '',
+    // decryption: 'Username,Name,Password,Email',
+    // subscription: 'Free'
+  },
+  request: {
+    params: {
+      id: Joi.string().required(),
+    },
+  },
+}
+
 const userEndpoints = [
   createUserApi,
+  updateUserApi,
   loginUserApi,
   adminLoginUserApi,
   getUserApi,
   listUsersApi,
+  deleteUserApi,
 ]
 
 module.exports = new API('User', '/api/user', userEndpoints)
