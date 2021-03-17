@@ -6,10 +6,16 @@ import '../../../widgets/TextFieldContainer.dart';
 import '../../../services/user.service.dart';
 import '../../../models/user.model.dart';
 import '../../../providers/auth.provider.dart';
+import '../../../helpers/SharedPreferenceHelper.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   static final String routeName = '/login';
 
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   final numberController = TextEditingController(text: '1234567890');
   final passwordController = TextEditingController(text: 'Qwerty9876!');
 
@@ -24,7 +30,11 @@ class LoginForm extends StatelessWidget {
 
       User user = await UserService.login(number, password);
 
+      await SharedPreferenceHelper.setPreference('token', user.token);
+
       Provider.of<Auth>(context, listen: false).login(user);
+
+      Navigator.of(context).pushNamed('/');
     } catch (error) {
       print(error.toString());
       final scaffoldContext = Scaffold.of(context);

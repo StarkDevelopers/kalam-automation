@@ -4,6 +4,8 @@ const OrderItems = require('../orderItems/orderItems.model')
 class OrdersRepository extends BaseRepository {
   constructor(context, logger) {
     super(context, logger)
+
+    this.user = context.request.user
   }
 
   async create(orders) {
@@ -19,6 +21,7 @@ class OrdersRepository extends BaseRepository {
         orderItem.productId = order.productId
         orderItem.orderId = newOrder._id
         orderItem.status = 'Pending'
+        orderItem.userId = this.user._id
 
         await orderItem.save()
       }

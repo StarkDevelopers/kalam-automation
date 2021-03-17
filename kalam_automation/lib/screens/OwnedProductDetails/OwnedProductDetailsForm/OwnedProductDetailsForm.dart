@@ -1,35 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:kalam_automation/screens/OwnedProducts/OwnedProducts.dart';
 
 import '../../../models/order.model.dart';
 import '../../../services/orders.service.dart';
 import '../../../widgets/RoundedButton.dart';
+import '../../../screens/OwnedProducts/OwnedProducts.dart';
 
 class OwnedProductDetailsForm extends StatelessWidget {
   final Order order;
-  final TextEditingController driverNameController = TextEditingController();
-  final TextEditingController licenseController = TextEditingController();
-  final TextEditingController numberPlateController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController stateController = TextEditingController();
+  final Map<String, TextEditingController> controllers = {
+    'customerName': TextEditingController(),
+    'companyName': TextEditingController(),
+    'address': TextEditingController(),
+    'gstNumber': TextEditingController(),
+    'customerMobileNumber1': TextEditingController(),
+    'customerMobileNumber2': TextEditingController(),
+    'emailId': TextEditingController(),
+    'vehicleNumber': TextEditingController(),
+    'vehicleCompany': TextEditingController(),
+    'gpsUserName': TextEditingController(),
+    'gpsPassword': TextEditingController(),
+    'aadharCardNumber': TextEditingController(),
+  };
 
   OwnedProductDetailsForm(this.order);
 
   Future<void> updateDetails(BuildContext context, Order order) async {
     try {
-      Order updatedOrder = Order.clone(order);
+      Map<String, String> updateFields = {};
 
-      updatedOrder.nameOfDriver = driverNameController.text;
-      updatedOrder.licenseNumber = licenseController.text;
-      updatedOrder.numberPlate = numberPlateController.text;
-      updatedOrder.city = cityController.text;
-      updatedOrder.state = stateController.text;
+      bool valid = true;
+      controllers.forEach((key, value) {
+        if (value.text == '') {
+          valid = false;
+        } else {
+          updateFields[key] = value.text;
+        }
+      });
 
-      if (updatedOrder.nameOfDriver == '' ||
-          updatedOrder.licenseNumber == '' ||
-          updatedOrder.numberPlate == '' ||
-          updatedOrder.city == '' ||
-          updatedOrder.state == '') {
+      Order updatedOrder = Order.clone(order, updateFields: updateFields);
+
+      if (!valid) {
+        final scaffoldContext = Scaffold.of(context);
+        final snackBar =
+            SnackBar(content: Text('Fill out all the details for this order'));
+
+        scaffoldContext.showSnackBar(snackBar);
         return;
       }
 
@@ -50,28 +65,63 @@ class OwnedProductDetailsForm extends StatelessWidget {
     return Column(
       children: [
         TextField(
-          decoration: InputDecoration(labelText: 'Name of the Driver'),
-          controller: driverNameController,
+          decoration: InputDecoration(labelText: 'Customer Name'),
+          controller: controllers['customerName'],
         ),
         SizedBox(height: 10.0),
         TextField(
-          decoration: InputDecoration(labelText: 'License Number'),
-          controller: licenseController,
+          decoration: InputDecoration(labelText: 'Company Name'),
+          controller: controllers['companyName'],
         ),
         SizedBox(height: 10.0),
         TextField(
-          decoration: InputDecoration(labelText: 'Number Plate'),
-          controller: numberPlateController,
+          decoration: InputDecoration(labelText: 'Address'),
+          controller: controllers['address'],
         ),
         SizedBox(height: 10.0),
         TextField(
-          decoration: InputDecoration(labelText: 'City'),
-          controller: cityController,
+          decoration: InputDecoration(labelText: 'GST Number'),
+          controller: controllers['gstNumber'],
         ),
         SizedBox(height: 10.0),
         TextField(
-          decoration: InputDecoration(labelText: 'State'),
-          controller: stateController,
+          decoration: InputDecoration(labelText: 'Customer Mobile Number 1'),
+          controller: controllers['customerMobileNumber1'],
+        ),
+        SizedBox(height: 10.0),
+        TextField(
+          decoration: InputDecoration(labelText: 'Customer Mobile Number 2'),
+          controller: controllers['customerMobileNumber2'],
+        ),
+        SizedBox(height: 10.0),
+        TextField(
+          decoration: InputDecoration(labelText: 'Email ID'),
+          controller: controllers['emailId'],
+        ),
+        SizedBox(height: 10.0),
+        TextField(
+          decoration: InputDecoration(labelText: 'Vehicle Number'),
+          controller: controllers['vehicleNumber'],
+        ),
+        SizedBox(height: 10.0),
+        TextField(
+          decoration: InputDecoration(labelText: 'Vehicle Company'),
+          controller: controllers['vehicleCompany'],
+        ),
+        SizedBox(height: 10.0),
+        TextField(
+          decoration: InputDecoration(labelText: 'GPS User Name'),
+          controller: controllers['gpsUserName'],
+        ),
+        SizedBox(height: 10.0),
+        TextField(
+          decoration: InputDecoration(labelText: 'GPS Password'),
+          controller: controllers['gpsPassword'],
+        ),
+        SizedBox(height: 10.0),
+        TextField(
+          decoration: InputDecoration(labelText: 'Aadhar Card Number'),
+          controller: controllers['aadharCardNumber'],
         ),
         SizedBox(height: 30.0),
         RoundedButton(

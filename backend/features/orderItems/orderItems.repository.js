@@ -2,15 +2,18 @@ const BaseRepository = require('../../base/BaseRepository')
 
 const Orders = require('../orders/orders.model')
 const Product = require('../product/product.model')
+const User = require('../user/user.model')
 
 class OrderItemsRepository extends BaseRepository {
   constructor(context, logger) {
     super(context, logger)
+
+    this.user = context.request.user
   }
 
   async list() {
     new Orders().getInstance()
-    return await this.Model.find()
+    return await this.Model.find({ userId: this.user._id })
       .select(['productId', 'orderId', 'status'])
       .populate('orderId')
   }
@@ -18,10 +21,12 @@ class OrderItemsRepository extends BaseRepository {
   async listAll() {
     new Orders().getInstance()
     new Product().getInstance()
+    new User().getInstance()
     return await this.Model.find()
-      .select(['productId', 'orderId', 'status'])
+      .select(['productId', 'orderId', 'userId', 'status'])
       .populate('orderId')
       .populate('productId')
+      .populate('userId')
   }
 
   async getById(id) {
@@ -29,21 +34,35 @@ class OrderItemsRepository extends BaseRepository {
   }
 
   async updateOrderItemDetails(id, body) {
-    const nameOfDriver = body.nameOfDriver
-    const licenseNumber = body.licenseNumber
-    const numberPlate = body.numberPlate
-    const city = body.city
-    const state = body.state
+    const customerName = body.customerName
+    const companyName = body.companyName
+    const address = body.address
+    const gstNumber = body.gstNumber
+    const customerMobileNumber1 = body.customerMobileNumber1
+    const customerMobileNumber2 = body.customerMobileNumber2
+    const emailId = body.emailId
+    const vehicleNumber = body.vehicleNumber
+    const vehicleCompany = body.vehicleCompany
+    const gpsUserName = body.gpsUserName
+    const gpsPassword = body.gpsPassword
+    const aadharCardNumber = body.aadharCardNumber
 
     return await this.Model.findOneAndUpdate(
       { _id: id },
       {
         status: 'Inactive',
-        nameOfDriver,
-        licenseNumber,
-        numberPlate,
-        city,
-        state,
+        customerName,
+        companyName,
+        address,
+        gstNumber,
+        customerMobileNumber1,
+        customerMobileNumber2,
+        emailId,
+        vehicleNumber,
+        vehicleCompany,
+        gpsUserName,
+        gpsPassword,
+        aadharCardNumber,
       }
     )
   }

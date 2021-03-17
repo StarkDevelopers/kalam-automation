@@ -6,7 +6,16 @@ class UserRepository extends BaseRepository {
   }
 
   async login(number, password, isAdmin) {
-    return await this.Model.findOne({ number, password, isAdmin: isAdmin })
+    const userQuery = {
+      number,
+      password,
+    }
+
+    if (isAdmin) {
+      userQuery['isAdmin'] = true
+    }
+
+    return await this.Model.findOne(userQuery)
   }
 }
 

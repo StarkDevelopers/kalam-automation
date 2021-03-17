@@ -80,7 +80,7 @@ export function getUser() {
 
     return request({ path: "/api/user" }, authToken)
       .then((response) => {
-        dispatch(userActions.setUser(response));
+        dispatch(userActions.setUser(response.data));
         dispatch(loaderActions.loading(false));
       })
       .catch((error) => {

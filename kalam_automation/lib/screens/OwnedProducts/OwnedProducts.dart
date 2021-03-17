@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kalam_automation/screens/OwnedProductDetails/OwnedProductDetails.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -11,6 +10,7 @@ import '../../widgets/Drawer.dart';
 import '../../providers/products.provider.dart';
 import '../../images/Images.dart';
 import '../../enums/ProductStatus.enum.dart';
+import '../../screens/OwnedProductDetails/OwnedProductDetails.dart';
 
 class OwnedProducts extends StatelessWidget {
   static final String routeName = '/owned-products';

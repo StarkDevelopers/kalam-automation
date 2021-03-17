@@ -15,8 +15,6 @@ const createUserApi = {
   Model: User,
   middlewares: {
     authorization: '',
-    // decryption: 'Username,Name,Password,Email',
-    // subscription: 'Free'
   },
   request: {
     body: {
@@ -44,8 +42,6 @@ const updateUserApi = {
   Model: User,
   middlewares: {
     authorization: '',
-    // decryption: 'Username,Name,Password,Email',
-    // subscription: 'Free'
   },
   request: {
     body: {
@@ -72,11 +68,7 @@ const loginUserApi = {
     methodArguments: ['request:body'],
   },
   Model: User,
-  middlewares: {
-    // authorization: 'admin:user:create',
-    // decryption: 'Username,Name,Password,Email',
-    // subscription: 'Free'
-  },
+  middlewares: {},
   request: {
     body: {
       number: Joi.number().required(),
@@ -99,11 +91,7 @@ const adminLoginUserApi = {
     methodArguments: ['request:body'],
   },
   Model: User,
-  middlewares: {
-    // authorization: 'admin:user:create',
-    // decryption: 'Username,Name,Password,Email',
-    // subscription: 'Free'
-  },
+  middlewares: {},
   request: {
     body: {
       number: Joi.number().required(),
@@ -128,8 +116,6 @@ const getUserApi = {
   Model: User,
   middlewares: {
     authorization: '',
-    // decryption: 'Username,Name,Password,Email',
-    // subscription: 'Free'
   },
   request: {},
 }
@@ -160,8 +146,6 @@ const deleteUserApi = {
   Model: User,
   middlewares: {
     authorization: '',
-    // decryption: 'Username,Name,Password,Email',
-    // subscription: 'Free'
   },
   request: {
     params: {

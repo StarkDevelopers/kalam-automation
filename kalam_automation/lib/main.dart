@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kalam_automation/screens/OwnedProductDetails/OwnedProductDetails.dart';
 import 'package:provider/provider.dart';
 
 import './screens/SplashScreen/SplashScreen.dart';
@@ -7,6 +6,7 @@ import './screens/Products/Products.dart';
 import './screens/Cart/Cart.dart';
 import './screens/Login/Login.dart';
 import './screens/OwnedProducts/OwnedProducts.dart';
+import './screens/OwnedProductDetails/OwnedProductDetails.dart';
 
 import './providers/auth.provider.dart';
 import './providers/products.provider.dart';
@@ -33,7 +33,9 @@ class KalamAutomation extends StatelessWidget {
             primaryColor: Colors.black,
             accentColor: Colors.teal,
           ),
-          home: auth.isLoggedIn ? ProductsScreen() : Login(),
+          home: auth.isLoggedIn
+              ? SplashScreen(loggedIn: true)
+              : SplashScreen(loggedIn: false),
           routes: {
             ProductsScreen.routeName: (_) => ProductsScreen(),
             CartScreen.routeName: (_) => CartScreen(),

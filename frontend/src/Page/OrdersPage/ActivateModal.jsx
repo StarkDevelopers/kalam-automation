@@ -82,6 +82,8 @@ export function ActivateModal(props) {
             <Typography className={classes.value}>{order.gpsUserName}</Typography>
             <Typography variant="subtitle2">GPS Password</Typography>
             <Typography className={classes.value}>{order.gpsPassword}</Typography>
+            <Typography variant="subtitle2">Aadhar Card Number</Typography>
+            <Typography className={classes.value}>{order.aadharCardNumber}</Typography>
           </div>
         }
       </DialogContent>

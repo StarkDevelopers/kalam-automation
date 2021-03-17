@@ -13,7 +13,9 @@ const createOrdersApi = {
     methodArguments: ['request:body'],
   },
   Model: Orders,
-  middlewares: {},
+  middlewares: {
+    authorization: '',
+  },
   request: {
     body: {
       orderItems: Joi.array().items({

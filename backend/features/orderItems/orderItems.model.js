@@ -87,6 +87,10 @@ class OrderItems {
           type: String,
           required: false,
         },
+        aadharCardNumber: {
+          type: String,
+          required: false,
+        },
       },
       { timestamps: true }
     )

@@ -1,17 +1,21 @@
 import 'package:http/http.dart' as http;
-import 'package:kalam_automation/models/order.model.dart';
 import 'dart:convert';
 
 import '../config/api.dart';
 import '../models/cart.model.dart';
+import '../helpers/SharedPreferenceHelper.dart';
+import '../models/order.model.dart';
 
 class OrdersService {
   static Future<void> placeOrder(List<CartItem> cartItems) async {
     try {
+      String token = await SharedPreferenceHelper.getPreference('token');
+
       final response = await http.post(
         API.PLACE_ORDER,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
         },
         body: jsonEncode(
           {'orderItems': cartItems.map((e) => e.toJson()).toList()},
@@ -31,8 +35,15 @@ class OrdersService {
 
   static Future<List<Order>> listOrders() async {
     try {
+      print('Fetching list...');
+
+      String token = await SharedPreferenceHelper.getPreference('token');
+
       final response = await http.get(
         API.LIST_ORDERS,
+        headers: <String, String>{
+          'Authorization': 'Bearer $token',
+        },
       );
 
       if (response.statusCode >= 400) {
@@ -52,8 +63,13 @@ class OrdersService {
 
   static Future<Order> fetchOrder(String id) async {
     try {
+      String token = await SharedPreferenceHelper.getPreference('token');
+
       final response = await http.get(
         '${API.LIST_ORDERS}/$id',
+        headers: <String, String>{
+          'Authorization': 'Bearer $token',
+        },
       );
 
       if (response.statusCode >= 400) {
@@ -71,10 +87,13 @@ class OrdersService {
 
   static Future<void> updateDetails(Order order) async {
     try {
+      String token = await SharedPreferenceHelper.getPreference('token');
+
       final response = await http.patch(
         '${API.LIST_ORDERS}/${order.id}',
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
         },
         body: jsonEncode(
           order.toJson(),

@@ -194,6 +194,8 @@ function OrdersPage(props) {
             <TableRow>
               <TableCell>Id</TableCell>
               <TableCell>Product Name</TableCell>
+              <TableCell>User Name</TableCell>
+              <TableCell>User Number</TableCell>
               <TableCell>Order Date</TableCell>
               <TableCell>Status</TableCell>
               <TableCell size="small">Actions</TableCell>
@@ -207,6 +209,8 @@ function OrdersPage(props) {
                     {order._id}
                   </TableCell>
                   <TableCell>{order.productId.name}</TableCell>
+                  <TableCell>{order.userId?.name}</TableCell>
+                  <TableCell>{order.userId?.number}</TableCell>
                   <TableCell>{moment(order.orderId.date).format('Do MMM yyyy')}</TableCell>
                   <TableCell><Chip label={order.status} className={classStatus(order.status)} /></TableCell>
                   <TableCell>

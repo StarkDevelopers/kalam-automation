@@ -13,7 +13,9 @@ const listProductApi = {
     methodArguments: ['request:query'],
   },
   Model: Product,
-  middlewares: {},
+  middlewares: {
+    authorization: '',
+  },
   request: {
     query: {
       filter: Joi.string().allow('', null).optional(),
@@ -34,7 +36,9 @@ const createProductApi = {
     methodArguments: ['request:body'],
   },
   Model: Product,
-  middlewares: {},
+  middlewares: {
+    authorization: '',
+  },
   request: {
     body: {
       name: Joi.string().required(),

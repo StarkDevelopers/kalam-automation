@@ -115,11 +115,18 @@ const updateOrderItemDetailsApi = {
   },
   request: {
     body: {
-      nameOfDriver: Joi.string().required(),
-      licenseNumber: Joi.string().required(),
-      numberPlate: Joi.string().required(),
-      city: Joi.string().required(),
-      state: Joi.string().required(),
+      customerName: Joi.string().required(),
+      companyName: Joi.string().required(),
+      address: Joi.string().required(),
+      gstNumber: Joi.string().required(),
+      customerMobileNumber1: Joi.string().required(),
+      customerMobileNumber2: Joi.string().required(),
+      emailId: Joi.string().required(),
+      vehicleNumber: Joi.string().required(),
+      vehicleCompany: Joi.string().required(),
+      gpsUserName: Joi.string().required(),
+      gpsPassword: Joi.string().required(),
+      aadharCardNumber: Joi.string().required(),
     },
   },
 }

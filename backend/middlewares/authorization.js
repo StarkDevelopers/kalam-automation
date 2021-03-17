@@ -22,7 +22,7 @@ async function authorization(req, res, next) {
 
     return next()
   } catch (error) {
-    return res.status(403).send('Not Authorized t ')
+    return res.status(403).send('Not Authorized to this API')
   }
 }
 

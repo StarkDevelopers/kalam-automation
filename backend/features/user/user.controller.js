@@ -91,7 +91,9 @@ class UserController extends BaseController {
   get() {
     const user = this.request.user
 
-    this.respondOk(user)
+    this.respondOk({
+      data: user,
+    })
   }
 
   async list() {

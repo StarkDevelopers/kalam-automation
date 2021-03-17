@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kalam_automation/screens/OwnedProducts/OwnedProducts.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/Products/Products.dart';
 import '../screens/Cart/Cart.dart';
 import '../images/Images.dart';
+import '../providers/auth.provider.dart';
+import '../screens/OwnedProducts/OwnedProducts.dart';
 
 class KalamDrawer extends StatelessWidget {
   @override
@@ -59,7 +61,10 @@ class KalamDrawer extends StatelessWidget {
             ),
             selected: false,
             selectedTileColor: Colors.grey[300],
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed('/');
+              Provider.of<Auth>(context, listen: false).logout();
+            },
           ),
         ],
       ),

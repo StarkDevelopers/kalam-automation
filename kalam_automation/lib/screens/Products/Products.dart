@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kalam_automation/screens/Products/widgets/ProductList.dart';
 
 import '../../widgets/Drawer.dart';
 import '../../widgets/AppBar.dart';
+import '../../screens/Products/widgets/ProductList.dart';
 
 class ProductsScreen extends StatelessWidget {
   static const String routeName = '/products';
