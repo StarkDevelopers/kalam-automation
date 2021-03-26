@@ -16,8 +16,8 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final numberController = TextEditingController(text: '1234567890');
-  final passwordController = TextEditingController(text: 'Qwerty9876!');
+  final numberController = TextEditingController();
+  final passwordController = TextEditingController();
 
   Future<void> login(BuildContext context) async {
     try {

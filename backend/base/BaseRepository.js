@@ -24,6 +24,10 @@ class BaseRepository {
     return await this.Model.find()
   }
 
+  async findById(id) {
+    return await this.Model.findOne({ _id: id })
+  }
+
   async get(id) {}
 
   async delete(id) {

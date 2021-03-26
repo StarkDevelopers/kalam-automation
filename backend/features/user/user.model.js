@@ -16,6 +16,30 @@ class User {
           type: Number,
           required: true,
         },
+        number2: {
+          type: Number,
+          required: true,
+        },
+        email: {
+          type: String,
+          required: true,
+        },
+        address: {
+          type: String,
+          required: true,
+        },
+        aadharCardNumber: {
+          type: String,
+          required: true,
+        },
+        panCardNumber: {
+          type: String,
+          required: true,
+        },
+        technicianName: {
+          type: String,
+          required: true,
+        },
         password: {
           type: String,
           required: true,

@@ -27,7 +27,13 @@ const rules = {
   name: 'required|string',
   number: ['required', 'regex:/^[\\d]{10}$/'],
   password: ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$/'],
-  isAdmin: 'required|boolean'
+  isAdmin: 'required|boolean',
+  address: 'required|string',
+  number2: ['required', 'regex:/^[\\d]{10}$/'],
+  aadharCardNumber: 'required|string',
+  panCardNumber: 'required|string',
+  email: 'required|email',
+  technicianName: 'required|string'
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -100,19 +106,20 @@ function UsersPage(props) {
   const openModal = (open, id = null, isDelete = false) => {
     const editingUser = users.find(user => user._id === id);
     if (editingUser) {
-      changeUser({
-        _id: editingUser._id,
-        name: editingUser.name,
-        number: editingUser.number,
-        password: editingUser.password,
-        isAdmin: editingUser.isAdmin,
-      });
+      const clonedUser = Object.assign({}, editingUser);
+      changeUser(clonedUser);
     } else {
       changeUser({
         name: '',
         number: '',
         password: '',
         isAdmin: false,
+        number2: '',
+        email: '',
+        address: '',
+        aadharCardNumber: '',
+        panCardNumber: '',
+        technicianName: '',
       });
     }
     isDelete ? showDeleteModal(open) : showModal(open);

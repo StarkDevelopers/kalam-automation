@@ -27,6 +27,10 @@ class UserService extends BaseService {
     return await this.userRepository.list()
   }
 
+  async getUserDetails(id) {
+    return await this.userRepository.findById(id)
+  }
+
   async get(id) {}
 
   async delete(id) {

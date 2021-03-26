@@ -35,8 +35,6 @@ class OrdersService {
 
   static Future<List<Order>> listOrders() async {
     try {
-      print('Fetching list...');
-
       String token = await SharedPreferenceHelper.getPreference('token');
 
       final response = await http.get(

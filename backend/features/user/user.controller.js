@@ -110,6 +110,20 @@ class UserController extends BaseController {
     }
   }
 
+  async getUserDetails() {
+    try {
+      const user = await this.userService.getUserDetails(this.request.user._id)
+
+      this.respondOk({
+        data: user,
+      })
+    } catch (error) {
+      this.respondError({
+        message: Constants.fetchMessage(this.feature, true),
+      })
+    }
+  }
+
   async delete(id) {
     try {
       await this.userService.delete(id)

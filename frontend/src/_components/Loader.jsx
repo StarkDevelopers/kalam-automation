@@ -1,6 +1,6 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import animationData from '../_assets/animations/loader.json'
+import animationData from '../_assets/animations/animation.json'
 
 export default function Loader() {
   const defaultOptions = {
@@ -9,5 +9,5 @@ export default function Loader() {
     animationData: animationData,
   };
 
-  return <Lottie options={defaultOptions} isStopped={false} height={150} width={150} isPaused={false} isClickToPauseDisabled={true} />
+  return <Lottie options={defaultOptions} isStopped={false} height={300} width={300} isPaused={false} isClickToPauseDisabled={true} />
 }

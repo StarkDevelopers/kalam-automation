@@ -8,14 +8,14 @@ const useStyles = makeStyles(() => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    zIndex: 1000,
+    zIndex: 2000,
     width: '100%',
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     background: '#999999',
-    opacity: 0.7
+    opacity: 0.8
   },
 }));
 

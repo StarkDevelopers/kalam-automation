@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogActions: {
     padding: '0 1.5rem 1.5rem'
+  },
+  number: {
+    width: '100%'
   }
 }));
 
@@ -45,27 +48,37 @@ export function UsersModal(props) {
         <TextField
           autoFocus
           margin="dense"
-          id="name"
           label="Name"
           type="text"
           fullWidth
           value={user.name}
           onChange={e => onChangeUser('name', e.target.value)}
         />
+        <FormControl className={classes.number}>
+          <TextField
+            margin="dense"
+            label="Number"
+            type="number"
+            fullWidth
+            value={user.number}
+            onChange={e => onChangeUser('number', e.target.value)}
+          />
+          <FormHelperText id="password-helper-text">
+            This number will be used for login
+          </FormHelperText>
+        </FormControl>
         <TextField
           margin="dense"
-          id="number"
-          label="Number"
+          label="Number 2"
           type="number"
           fullWidth
-          value={user.number}
-          onChange={e => onChangeUser('number', e.target.value)}
+          value={user.number2}
+          onChange={e => onChangeUser('number2', e.target.value)}
         />
         <FormControl className={classes.password}>
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             margin="dense"
-            id="password"
             label="Password"
             type={showPassword ? "text" : "password"}
             fullWidth
@@ -83,8 +96,10 @@ export function UsersModal(props) {
               </InputAdornment>
             }
           />
-          <FormHelperText id="password-helper-text">Password must be strong: Atleast 8 characters long having
-            atleast 1 Uppercase letter, 1 Lowercase letter, 1 Special Character and 1 Number</FormHelperText>
+          <FormHelperText id="password-helper-text">
+            Password must be strong: Atleast 8 characters long having
+            atleast 1 Uppercase letter, 1 Lowercase letter, 1 Special Character and 1 Number
+          </FormHelperText>
         </FormControl>
         <FormControlLabel
           control={
@@ -96,6 +111,46 @@ export function UsersModal(props) {
             />
           }
           label="Is Admin?"
+        />
+        <TextField
+          margin="dense"
+          label="Email"
+          type="email"
+          fullWidth
+          value={user.email}
+          onChange={e => onChangeUser('email', e.target.value)}
+        />
+        <TextField
+          margin="dense"
+          label="Address"
+          type="text"
+          fullWidth
+          value={user.address}
+          onChange={e => onChangeUser('address', e.target.value)}
+        />
+        <TextField
+          margin="dense"
+          label="Aadhar Card Number"
+          type="text"
+          fullWidth
+          value={user.aadharCardNumber}
+          onChange={e => onChangeUser('aadharCardNumber', e.target.value)}
+        />
+        <TextField
+          margin="dense"
+          label="PAN Card Number"
+          type="text"
+          fullWidth
+          value={user.panCardNumber}
+          onChange={e => onChangeUser('panCardNumber', e.target.value)}
+        />
+        <TextField
+          margin="dense"
+          label="Technician Name"
+          type="text"
+          fullWidth
+          value={user.technicianName}
+          onChange={e => onChangeUser('technicianName', e.target.value)}
         />
       </DialogContent>
       <DialogActions className={classes.dialogActions}>

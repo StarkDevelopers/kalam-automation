@@ -38,12 +38,12 @@ class UserService {
     }
   }
 
-  static Future<User> getUser() async {
+  static Future<User> getUser(bool allDetails) async {
     try {
       String token = await SharedPreferenceHelper.getPreference('token');
 
       final response = await http.get(
-        API.GET_USER,
+        allDetails ? API.GET_USER_DETAILS : API.GET_USER,
         headers: <String, String>{
           'Authorization': 'Bearer $token',
         },
@@ -58,6 +58,32 @@ class UserService {
       User user = User.fromJson(responseData['data'], token);
 
       return user;
+    } catch (error) {
+      print(error.toString());
+      throw Exception('Something went wrong');
+    }
+  }
+
+  static Future<void> updateDetails(User user) async {
+    try {
+      String token = await SharedPreferenceHelper.getPreference('token');
+
+      final response = await http.put(
+        '${API.UPDATE_USER}',
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(
+          user.toJson(),
+        ),
+      );
+
+      if (response.statusCode >= 400) {
+        throw Exception('Failed to update details');
+      }
+
+      return;
     } catch (error) {
       print(error.toString());
       throw Exception('Something went wrong');

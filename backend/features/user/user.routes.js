@@ -19,6 +19,7 @@ const createUserApi = {
   request: {
     body: {
       number: Joi.number().required(),
+      number2: Joi.number().required(),
       name: Joi.string().required(),
       password: Joi.string()
         .regex(/^.*[a-z]+.*$/)
@@ -27,6 +28,11 @@ const createUserApi = {
         .regex(/^.*\W+.*$/)
         .required(),
       isAdmin: Joi.boolean().required(),
+      email: Joi.string().required(),
+      address: Joi.string().required(),
+      aadharCardNumber: Joi.string().required(),
+      panCardNumber: Joi.string().required(),
+      technicianName: Joi.string().required(),
     },
   },
 }
@@ -47,6 +53,7 @@ const updateUserApi = {
     body: {
       _id: Joi.string().required(),
       number: Joi.number().required(),
+      number2: Joi.number().required(),
       name: Joi.string().required(),
       password: Joi.string()
         .regex(/^.*[a-z]+.*$/)
@@ -54,7 +61,12 @@ const updateUserApi = {
         .regex(/^.*[0-9]+.*$/)
         .regex(/^.*\W+.*$/)
         .required(),
-      isAdmin: Joi.boolean().required(),
+      isAdmin: Joi.boolean().optional(),
+      email: Joi.string().required(),
+      address: Joi.string().required(),
+      aadharCardNumber: Joi.string().required(),
+      panCardNumber: Joi.string().required(),
+      technicianName: Joi.string().required(),
     },
   },
 }
@@ -120,6 +132,21 @@ const getUserApi = {
   request: {},
 }
 
+const getUserDetailsApi = {
+  path: '/details',
+  verb: 'GET',
+  handler: {
+    controller: UserController,
+    method: 'getUserDetails',
+    methodArguments: [],
+  },
+  Model: User,
+  middlewares: {
+    authorization: '',
+  },
+  request: {},
+}
+
 const listUsersApi = {
   path: '/list',
   verb: 'GET',
@@ -162,6 +189,7 @@ const userEndpoints = [
   getUserApi,
   listUsersApi,
   deleteUserApi,
+  getUserDetailsApi,
 ]
 
 module.exports = new API('User', '/api/user', userEndpoints)

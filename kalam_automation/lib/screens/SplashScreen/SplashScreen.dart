@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
       Navigator.of(context).pushReplacementNamed(Login.routeName);
     } else {
       try {
-        User user = await UserService.getUser();
+        User user = await UserService.getUser(false);
 
         SharedPreferenceHelper.setPreference('token', user.token);
 
