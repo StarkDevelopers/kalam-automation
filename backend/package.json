@@ -24,9 +24,11 @@
     "winston-daily-rotate-file": "^3.7.0"
   },
   "devDependencies": {
+    "ncp": "^2.0.0",
     "nodemon": "^2.0.7"
   },
   "scripts": {
+    "build": "cd ../frontend && npm run build && cd ../backend && ncp ../frontend/build ./client",
     "dev": "nodemon server.js",
     "start": "node server.js"
   }
