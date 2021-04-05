@@ -1,4 +1,4 @@
-package com.example.kalam_automation
+package com.starkdevelopers.kalam_automation
 
 import io.flutter.embedding.android.FlutterActivity
 
