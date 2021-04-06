@@ -43,6 +43,7 @@ const createProductApi = {
     body: {
       name: Joi.string().required(),
       image: Joi.string().required(),
+      order: Joi.number().required(),
     },
   },
 }
